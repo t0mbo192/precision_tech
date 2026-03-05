@@ -1,6 +1,7 @@
 import unittest
 from textnode import TextType, TextNode
 from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link
+from inline_markdown import text_to_textnodes
 
 
 class TestInlineMarkdown(unittest.TestCase):
@@ -89,6 +90,44 @@ class TestInlineMarkdown(unittest.TestCase):
             ],
             new_nodes,
         )
+
+    def test_split_links_with_image(self):
+        node = TextNode(
+            "This is text with a [link](https://www.google.com) and an ![image](https://i.imgur.com/zjjcJKZ.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with a ", TextType.TEXT),
+                TextNode("link", TextType.LINK, "https://www.google.com"),
+                TextNode(" and an ![image](https://i.imgur.com/zjjcJKZ.png)", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    # text to textnodes tests
+
+    def test_split_words(self):
+        text = "Hello World"
+        expected_nodes = [
+            TextNode("Hello World", TextType.TEXT),
+        ]
+        nodes = text_to_textnodes(text)
+        self.assertEqual(nodes, expected_nodes)
+
+    def test_split_words_with_markdown(self):
+        text = "This is **bold** text with an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://www.google.com)"
+        expected_nodes = [
+            TextNode("This is ", TextType.TEXT),
+            TextNode("bold", TextType.BOLD),
+            TextNode(" text with an ", TextType.TEXT),
+            TextNode("image", TextType.IMAGE, "https://i.imgur.com/zjjcJKZ.png"),
+            TextNode(" and a ", TextType.TEXT),
+            TextNode("link", TextType.LINK, "https://www.google.com"),
+        ]
+        nodes = text_to_textnodes(text)
+        self.assertEqual(nodes, expected_nodes)
 
 
 if __name__ == "__main__":

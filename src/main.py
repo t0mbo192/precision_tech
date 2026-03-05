@@ -1,7 +1,6 @@
-from textnode import TextNode, TextType
+from inline_markdown import text_to_textnodes
 
-def main():
-    new_node =TextNode("Hello, World!", TextType.TEXT)
-    print(new_node)
-
-main()
+text = "This is **bold** text with an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://www.google.com)"
+text_nodes = text_to_textnodes(text)
+for node in text_nodes:
+    print(node)
