@@ -1,6 +1,15 @@
-from inline_markdown import text_to_textnodes
+from inline_markdown import markdown_to_blocks
 
-text = "This is **bold** text with an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://www.google.com)"
-text_nodes = text_to_textnodes(text)
-for node in text_nodes:
-    print(node)
+text = """
+This is **bold** text
+
+
+This is _italic_ text
+
+- This is a list
+- with items
+"""
+
+text_blocks = markdown_to_blocks(text)
+for block in text_blocks:
+    print(block)
