@@ -1,15 +1,23 @@
-from inline_markdown import markdown_to_blocks
+import os
 
-text = """
-This is **bold** text
+from copystatic import copy_files_recursive
+from markdown_to_html import generate_page
 
 
-This is _italic_ text
+def main():
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    static_dir = os.path.join(project_root, "static")
+    content_dir = os.path.join(project_root, "content")
+    public_dir = os.path.join(project_root, "public")
+    template_path = os.path.join(project_root, "template.html")
 
-- This is a list
-- with items
-"""
+    copy_files_recursive(static_dir, public_dir)
+    generate_page(
+        os.path.join(content_dir, "index.md"),
+        template_path,
+        os.path.join(public_dir, "index.html"),
+    )
 
-text_blocks = markdown_to_blocks(text)
-for block in text_blocks:
-    print(block)
+
+if __name__ == "__main__":
+    main()

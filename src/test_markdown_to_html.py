@@ -1,6 +1,9 @@
-
+import os
+import tempfile
 import unittest
-from markdown_to_html import markdown_to_html_node
+
+from markdown_to_html import extract_title, generate_page, markdown_to_html_node
+
 
 class TestMarkdownToHtml(unittest.TestCase):
     def test_paragraphs(self):
@@ -54,6 +57,49 @@ class TestMarkdownToHtml(unittest.TestCase):
         self.assertEqual(
             html,
             "<div><h1>Main heading</h1><blockquote>quoted <i>text</i> across lines</blockquote><ul><li>first item</li><li>second <b>item</b></li></ul><ol><li>ordered one</li><li>ordered two</li></ol></div>",
+        )
+
+    def test_missing_title_raises(self):
+        md = """
+    This is a paragraph without a title
+    """
+        with self.assertRaises(ValueError):
+            extract_title(md)
+
+    def test_title_extraction(self):
+        md = """
+    # This is the title 
+    This is a paragraph
+    """
+        title = extract_title(md)
+        self.assertEqual(title, "This is the title")
+
+    def test_generate_page_creates_html_file(self):
+        markdown = """# Hello World
+
+This is a paragraph with **bold** text.
+"""
+        template = """<html><head><title>{{ Title }}</title></head><body>{{ Content }}</body></html>"""
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            from_path = os.path.join(tmpdir, "content", "index.md")
+            template_path = os.path.join(tmpdir, "template.html")
+            dest_path = os.path.join(tmpdir, "public", "nested", "index.html")
+
+            os.makedirs(os.path.dirname(from_path), exist_ok=True)
+            with open(from_path, "w", encoding="utf-8") as markdown_file:
+                markdown_file.write(markdown)
+            with open(template_path, "w", encoding="utf-8") as template_file:
+                template_file.write(template)
+
+            generate_page(from_path, template_path, dest_path)
+
+            with open(dest_path, encoding="utf-8") as dest_file:
+                generated = dest_file.read()
+
+        self.assertEqual(
+            generated,
+            "<html><head><title>Hello World</title></head><body><div><h1>Hello World</h1><p>This is a paragraph with <b>bold</b> text.</p></div></body></html>",
         )
 
     if __name__ == "__main__":

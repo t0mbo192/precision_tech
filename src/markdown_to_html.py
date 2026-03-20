@@ -1,3 +1,5 @@
+import os
+
 from htmlnode import ParentNode
 from inline_markdown import text_to_textnodes
 from markdown_blocks import BlockType, block_to_block_type, markdown_to_blocks
@@ -89,3 +91,36 @@ def markdown_to_html_node(markdown):
     blocks = markdown_to_blocks(markdown)
     children = [block_to_html_node(block) for block in blocks]
     return ParentNode("div", children)
+
+
+def extract_title(markdown):
+    for line in markdown.split("\n"):
+        stripped_line = line.strip()
+        if stripped_line.startswith("# "):
+            return stripped_line[2:].strip()
+    raise ValueError("No title found in markdown")
+
+
+def generate_page(from_path, template_path, dest_path):
+    print(
+        f"Generating page from {from_path} to {dest_path} using {template_path}"
+    )
+
+    with open(from_path, encoding="utf-8") as markdown_file:
+        markdown = markdown_file.read()
+
+    with open(template_path, encoding="utf-8") as template_file:
+        template = template_file.read()
+
+    html_content = markdown_to_html_node(markdown).to_html()
+    title = extract_title(markdown)
+    full_html = template.replace("{{ Title }}", title).replace(
+        "{{ Content }}", html_content
+    )
+
+    dest_dir = os.path.dirname(dest_path)
+    if dest_dir:
+        os.makedirs(dest_dir, exist_ok=True)
+
+    with open(dest_path, "w", encoding="utf-8") as dest_file:
+        dest_file.write(full_html)
