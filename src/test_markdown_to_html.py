@@ -2,6 +2,7 @@ import os
 import tempfile
 import unittest
 
+from copystatic import copy_files_recursive
 from markdown_to_html import (
     extract_title,
     generate_page,
@@ -156,6 +157,56 @@ This is a paragraph with **bold** text.
             nested_html,
             "<html><head><title>Post</title></head><body><div><h1>Post</h1><p>Nested content.</p></div></body></html>",
         )
+
+    def test_site_generation_copies_images_and_rewrites_nested_image_paths(self):
+        template = """<html><head><link href="/index.css" rel="stylesheet" /><title>{{ Title }}</title></head><body>{{ Content }}</body></html>"""
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            static_dir = os.path.join(tmpdir, "static")
+            content_dir = os.path.join(tmpdir, "content")
+            public_dir = os.path.join(tmpdir, "public")
+            template_path = os.path.join(tmpdir, "template.html")
+
+            image_path = os.path.join(static_dir, "images", "hero.png")
+            css_path = os.path.join(static_dir, "index.css")
+            markdown_path = os.path.join(content_dir, "blog", "post", "index.md")
+
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+            os.makedirs(os.path.dirname(markdown_path), exist_ok=True)
+
+            with open(image_path, "wb") as image_file:
+                image_file.write(b"fake image bytes")
+
+            with open(css_path, "w", encoding="utf-8") as css_file:
+                css_file.write("body { color: #111; }")
+
+            with open(markdown_path, "w", encoding="utf-8") as markdown_file:
+                markdown_file.write(
+                    "# Post\n\n![Hero](/images/hero.png)\n\n[Home](/)\n"
+                )
+
+            with open(template_path, "w", encoding="utf-8") as template_file:
+                template_file.write(template)
+
+            copy_files_recursive(static_dir, public_dir)
+            generate_pages_recursive(content_dir, template_path, public_dir)
+
+            generated_html_path = os.path.join(
+                public_dir, "blog", "post", "index.html"
+            )
+            copied_image_path = os.path.join(public_dir, "images", "hero.png")
+
+            self.assertTrue(os.path.exists(copied_image_path))
+
+            with open(generated_html_path, encoding="utf-8") as generated_html_file:
+                generated_html = generated_html_file.read()
+
+            self.assertIn('href="../../index.css"', generated_html)
+            self.assertIn(
+                '<img src="../../images/hero.png" alt="Hero"></img>',
+                generated_html,
+            )
+            self.assertIn('href="../.."', generated_html)
 
     if __name__ == "__main__":
         unittest.main()
