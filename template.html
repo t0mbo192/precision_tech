@@ -8,6 +8,23 @@
   </head>
 
   <body>
-    <article>{{ Content }}</article>
+    <div class="page-orb page-orb-left" aria-hidden="true"></div>
+    <div class="page-orb page-orb-right" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="site-brand" href="/">Precision Tech</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="/">Home</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </header>
+
+      <article class="page-content">{{ Content }}</article>
+
+      <footer class="site-footer">
+        <p>Built with a custom Python static site generator.</p>
+      </footer>
+    </div>
   </body>
 </html>

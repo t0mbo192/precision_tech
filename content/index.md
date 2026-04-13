@@ -1,46 +1,25 @@
-# Tolkien Fan Club
+# Precision Tech
 
-![JRR Tolkien sitting](/images/tolkien.png)
+A portfolio in progress for thoughtful web design, front-end builds, and practical digital work.
 
-Here's the deal, **I like Tolkien**.
+> Available for freelance projects, contract work, and collaborative builds.
 
-> "I am in fact a Hobbit in all but size."
->
-> -- J.R.R. Tolkien
+I use this space to turn ideas into clear landing pages, lightweight product sites, and case studies that show how the work gets made.
 
-## Blog posts
+## What I build
 
-- [Why Glorfindel is More Impressive than Legolas](/blog/glorfindel)
-- [Why Tom Bombadil Was a Mistake](/blog/tom)
-- [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty)
+- Marketing sites that feel polished, fast, and easy to update
+- Portfolio pages with a strong visual direction and simple structure
+- Small tools and automations that remove repetitive work
 
-## Reasons I like Tolkien
+## Starter projects
 
-- You can spend years studying the legendarium and still not understand its depths
-- It can be enjoyed by children and adults alike
-- Disney _didn't ruin it_ (okay, but Amazon might have)
-- It created an entirely new genre of fantasy
+1. A custom static site foundation built to grow one focused page at a time
+2. Landing page explorations that test messaging, layout, and tone quickly
+3. Workflow utilities that help teams ship faster with fewer manual steps
 
-## My favorite characters (in order)
+## Next up
 
-1. Gandalf
-2. Bilbo
-3. Sam
-4. Glorfindel
-5. Galadriel
-6. Elrond
-7. Thorin
-8. Sauron
-9. Aragorn
+This first version is intentionally simple. The next passes can add project spotlights, an about page, writing, and a stronger brand voice as we shape the site together.
 
-Here's what `elflang` looks like (the perfect coding language):
-
-```
-func main(){
-    fmt.Println("Aiya, Ambar!")
-}
-```
-
-Want to get in touch? [Contact me here](/contact).
-
-This site was generated with a custom-built [static site generator](https://www.boot.dev/courses/build-static-site-generator-python) from the course on [Boot.dev](https://www.boot.dev).
+[Start a conversation](/contact)
