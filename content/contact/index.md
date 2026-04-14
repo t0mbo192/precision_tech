@@ -1,6 +1,6 @@
 # Contact
 
-If this first pass feels close to the direction you want, the next step is turning it into a fuller portfolio with real projects and a more personal voice.
+If this direction lines up with the kind of CAD/CAM or technical project support you need, this is where the conversation can start.
 
 The quickest way to reach me is by email: [hello@example.com](mailto:hello@example.com)
 
@@ -8,8 +8,8 @@ You can also look through the current project list here: [Projects](/projects)
 
 ## What to send
 
-- A short summary of the work or role
-- Any timeline or launch date you have in mind
-- Links, references, or examples that capture the look you want
+- A short description of the part, process, or problem you are trying to solve
+- Any drawings, models, tolerances, materials, or machine details that matter
+- Your timeline, deliverables, and whether coding or automation support is part of the job
 
 [Back home](/)

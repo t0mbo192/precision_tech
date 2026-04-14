@@ -1,26 +1,26 @@
 # Tom's Precision Tech
 
-A portfolio in progress for thoughtful web design, front-end builds, and practical digital work.
+A portfolio focused on CAD/CAM projects, machining workflows, and practical technical problem-solving.
 
-> Available for freelance projects, contract work, and collaborative builds.
+> CAD/CAM first, with coding and automation projects supporting the work.
 
-I use this space to turn ideas into clear landing pages, lightweight product sites, and case studies that show how the work gets made.
+This site is where I collect design-to-manufacturing work, process ideas, and the code utilities that help make production cleaner, faster, and easier to repeat.
 
-## What I build
+## What I focus on
 
-- Marketing sites that feel polished, fast, and easy to update
-- Portfolio pages with a strong visual direction and simple structure
-- Small tools and automations that remove repetitive work
+- CAD models and machining-ready part geometry
+- CAM strategies, toolpaths, and setup planning for real production work
+- Shop-friendly code and automations that reduce repetitive tasks
 
-## Featured focus
+## Project mix
 
-1. A custom static site foundation built to grow one focused page at a time
-2. Landing page explorations that test messaging, layout, and tone quickly
-3. Workflow utilities that help teams ship faster with fewer manual steps
+1. CAD/CAM project breakdowns that show modeling, programming, and machining intent
+2. Fixture, tooling, and process concepts built to make production more consistent
+3. Coding projects that support quoting, documentation, setup planning, or workflow automation
 
 ## Next up
 
-This first version is intentionally simple. The next passes can add project spotlights, an about page, writing, and a stronger brand voice as we shape the site together.
+The next stage is turning this into a stronger project archive with actual part examples, setup notes, screenshots, and a clearer mix of manufacturing work and supporting code.
 
 [Browse projects](/projects)
 
