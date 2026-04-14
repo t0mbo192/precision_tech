@@ -99,8 +99,10 @@ body::before {
   color: var(--text);
   text-decoration: none;
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
+  max-width: 16rem;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
@@ -159,6 +161,33 @@ body::before {
   font-size: clamp(3rem, 8vw, 5.4rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
+  color: #fff4e1;
+  text-shadow:
+    -1px -1px 0 rgba(255, 226, 169, 0.95),
+    0 -2px 0 rgba(255, 190, 104, 0.85),
+    1px -1px 0 rgba(255, 142, 93, 0.8),
+    2px 2px 0 rgba(42, 17, 11, 0.88),
+    3px 3px 0 rgba(42, 17, 11, 0.82),
+    4px 4px 0 rgba(42, 17, 11, 0.76),
+    5px 5px 18px rgba(0, 0, 0, 0.4);
+  -webkit-text-stroke: 1.5px rgba(34, 11, 5, 0.72);
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .page-content h1 {
+    background: linear-gradient(
+      180deg,
+      #fff8ea 0%,
+      #ffd989 26%,
+      #ffb056 52%,
+      #ff8750 76%,
+      #7f2f22 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .page-content h2 {

@@ -4,6 +4,8 @@ If this first pass feels close to the direction you want, the next step is turni
 
 The quickest way to reach me is by email: [hello@example.com](mailto:hello@example.com)
 
+You can also look through the current project list here: [Projects](/projects)
+
 ## What to send
 
 - A short summary of the work or role
