@@ -8,6 +8,7 @@ from markdown_to_html import (
     generate_page,
     generate_pages_recursive,
     markdown_to_html_node,
+    normalize_basepath,
 )
 
 
@@ -79,6 +80,14 @@ class TestMarkdownToHtml(unittest.TestCase):
     """
         title = extract_title(md)
         self.assertEqual(title, "This is the title")
+
+    def test_normalize_basepath(self):
+        self.assertEqual(normalize_basepath("/"), "/")
+        self.assertEqual(normalize_basepath("precision_tech"), "/precision_tech/")
+        self.assertEqual(normalize_basepath("/precision_tech"), "/precision_tech/")
+        self.assertEqual(
+            normalize_basepath("/precision_tech/"), "/precision_tech/"
+        )
 
     def test_generate_page_creates_html_file(self):
         markdown = """# Hello World
@@ -184,7 +193,7 @@ This is a paragraph with **bold** text.
                 from_path,
                 template_path,
                 dest_path,
-                "/site_generator/",
+                "site_generator",
             )
 
             with open(dest_path, encoding="utf-8") as dest_file:

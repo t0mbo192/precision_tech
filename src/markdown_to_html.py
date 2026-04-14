@@ -6,6 +6,12 @@ from markdown_blocks import BlockType, block_to_block_type, markdown_to_blocks
 from textnode import TextNode, TextType, text_node_to_html
 
 
+def normalize_basepath(basepath):
+    if not basepath or basepath == "/":
+        return "/"
+    return f"/{basepath.strip('/')}/"
+
+
 def get_heading_level(block):
     level = 0
     for char in block:
@@ -105,6 +111,7 @@ def generate_page(from_path, template_path, dest_path, basepath="/"):
     print(
         f"Generating page from {from_path} to {dest_path} using {template_path}"
     )
+    basepath = normalize_basepath(basepath)
 
     with open(from_path, encoding="utf-8") as markdown_file:
         markdown = markdown_file.read()

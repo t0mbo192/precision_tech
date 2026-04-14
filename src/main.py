@@ -2,11 +2,11 @@ import os
 import sys
 
 from copystatic import copy_files_recursive
-from markdown_to_html import generate_pages_recursive
+from markdown_to_html import generate_pages_recursive, normalize_basepath
 
 
 def main():
-    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
+    basepath = normalize_basepath(sys.argv[1] if len(sys.argv) > 1 else "/")
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     static_dir = os.path.join(project_root, "static")
     content_dir = os.path.join(project_root, "content")

@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-python3 src/main.py "/site_generator/"
+set -euo pipefail
+
+requested_basepath="${1:-$(basename "$(git rev-parse --show-toplevel)")}"
+
+python3 src/main.py "$requested_basepath"
