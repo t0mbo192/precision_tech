@@ -1,20 +1,23 @@
 :root {
-  --bg: #081116;
-  --bg-deep: #10202a;
-  --surface: rgba(8, 17, 22, 0.72);
-  --surface-strong: rgba(10, 22, 28, 0.9);
-  --line: rgba(255, 255, 255, 0.09);
-  --text: #f4efe7;
-  --muted: #a8b8bd;
-  --accent: #ff8e5d;
-  --accent-soft: #ffd07a;
-  --shadow: 0 28px 70px rgba(0, 0, 0, 0.32);
+  --bg: #050605;
+  --bg-deep: #111311;
+  --surface: rgba(17, 19, 17, 0.86);
+  --surface-strong: rgba(28, 31, 28, 0.95);
+  --line: rgba(215, 221, 216, 0.14);
+  --line-strong: rgba(183, 255, 60, 0.42);
+  --text: #eef2ee;
+  --muted: #aab1aa;
+  --accent: #4b5320;
+  --accent-deep: #2f3825;
+  --accent-soft: #b7ff3c;
+  --shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
+  --corner: 0;
 }
 
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: #345161 #081116;
+  scrollbar-color: #4b5320 #050605;
 }
 
 html {
@@ -28,9 +31,8 @@ body {
   font-family: "Avenir Next", "Trebuchet MS", "Gill Sans", sans-serif;
   line-height: 1.6;
   background:
-    radial-gradient(circle at top left, rgba(255, 208, 122, 0.12), transparent 28%),
-    radial-gradient(circle at 85% 18%, rgba(255, 142, 93, 0.22), transparent 20%),
-    linear-gradient(160deg, #071015 0%, #0d1a20 48%, #11242d 100%);
+    linear-gradient(135deg, rgba(75, 83, 32, 0.2), transparent 34%),
+    linear-gradient(160deg, #050605 0%, #111311 52%, #1c1f1c 100%);
   overflow-x: hidden;
 }
 
@@ -39,33 +41,27 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(215, 221, 216, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(215, 221, 216, 0.03) 1px, transparent 1px);
   background-size: 36px 36px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 90%);
   pointer-events: none;
 }
 
 .page-orb {
-  position: fixed;
-  width: 22rem;
-  height: 22rem;
-  border-radius: 999px;
-  filter: blur(22px);
-  opacity: 0.55;
-  pointer-events: none;
+  display: none;
 }
 
 .page-orb-left {
   top: -8rem;
   left: -8rem;
-  background: radial-gradient(circle, rgba(255, 208, 122, 0.42), transparent 68%);
+  background: transparent;
 }
 
 .page-orb-right {
   top: 10rem;
   right: -10rem;
-  background: radial-gradient(circle, rgba(255, 142, 93, 0.34), transparent 70%);
+  background: transparent;
 }
 
 .page-shell {
@@ -91,7 +87,7 @@ body::before {
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  border-radius: 999px;
+  border-radius: var(--corner);
   animation: rise-in 500ms ease-out both;
 }
 
@@ -116,8 +112,9 @@ body::before {
   color: var(--muted);
   text-decoration: none;
   padding: 0.6rem 0.95rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
+  border: 1px solid var(--line);
+  border-radius: var(--corner);
+  background: rgba(215, 221, 216, 0.04);
   transition:
     color 180ms ease,
     border-color 180ms ease,
@@ -128,8 +125,8 @@ body::before {
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--text);
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--line-strong);
+  background: rgba(75, 83, 32, 0.38);
   transform: translateY(-1px);
 }
 
@@ -141,7 +138,7 @@ body::before {
   display: grid;
   gap: 1.1rem;
   padding: clamp(1.5rem, 4vw, 3.5rem);
-  border-radius: 2rem;
+  border-radius: var(--corner);
   animation: rise-in 720ms ease-out both;
 }
 
@@ -160,28 +157,28 @@ body::before {
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
   font-size: clamp(3rem, 8vw, 5.4rem);
   line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: #fff4e1;
+  letter-spacing: 0;
+  color: #eef2ee;
   text-shadow:
-    -1px -1px 0 rgba(255, 226, 169, 0.95),
-    0 -2px 0 rgba(255, 190, 104, 0.85),
-    1px -1px 0 rgba(255, 142, 93, 0.8),
-    2px 2px 0 rgba(42, 17, 11, 0.88),
-    3px 3px 0 rgba(42, 17, 11, 0.82),
-    4px 4px 0 rgba(42, 17, 11, 0.76),
+    -1px -1px 0 rgba(215, 221, 216, 0.86),
+    0 -2px 0 rgba(183, 255, 60, 0.58),
+    1px -1px 0 rgba(75, 83, 32, 0.8),
+    2px 2px 0 rgba(0, 0, 0, 0.88),
+    3px 3px 0 rgba(0, 0, 0, 0.82),
+    4px 4px 0 rgba(0, 0, 0, 0.76),
     5px 5px 18px rgba(0, 0, 0, 0.4);
-  -webkit-text-stroke: 1.5px rgba(34, 11, 5, 0.72);
+  -webkit-text-stroke: 1.5px rgba(5, 6, 5, 0.72);
 }
 
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .page-content h1 {
     background: linear-gradient(
       180deg,
-      #fff8ea 0%,
-      #ffd989 26%,
-      #ffb056 52%,
-      #ff8750 76%,
-      #7f2f22 100%
+      #f4f7f4 0%,
+      #d7ddd8 28%,
+      #b7ff3c 50%,
+      #7a8f3f 72%,
+      #2f3825 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -219,7 +216,7 @@ body::before {
 .page-content a {
   color: var(--text);
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 208, 122, 0.5);
+  border-bottom: 1px solid var(--line-strong);
   transition:
     color 180ms ease,
     border-color 180ms ease;
@@ -229,6 +226,29 @@ body::before {
 .page-content a:focus-visible {
   color: var(--accent-soft);
   border-color: var(--accent-soft);
+}
+
+.page-content p:has(> a:only-child) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.page-content p > a:only-child {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--corner);
+  background: rgba(75, 83, 32, 0.24);
+  color: var(--text);
+}
+
+.page-content p > a:only-child:hover,
+.page-content p > a:only-child:focus-visible {
+  background: rgba(183, 255, 60, 0.12);
+  color: var(--accent-soft);
 }
 
 .page-content ul,
@@ -244,10 +264,10 @@ body::before {
 .page-content li {
   padding: 1.1rem 1.15rem;
   border: 1px solid var(--line);
-  border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--corner);
+  background: rgba(215, 221, 216, 0.045);
   color: var(--text);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(215, 221, 216, 0.06);
 }
 
 .page-content blockquote {
@@ -255,9 +275,9 @@ body::before {
   max-width: 100%;
   margin: 0;
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(255, 208, 122, 0.18);
-  border-radius: 999px;
-  background: rgba(255, 208, 122, 0.08);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--corner);
+  background: rgba(75, 83, 32, 0.26);
   color: var(--accent-soft);
   font-size: 0.78rem;
   letter-spacing: 0.18em;
@@ -266,8 +286,8 @@ body::before {
 
 .page-content code {
   padding: 0.25rem 0.45rem;
-  border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--corner);
+  background: rgba(215, 221, 216, 0.08);
   color: var(--accent-soft);
   font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
 }
@@ -276,7 +296,7 @@ body::before {
   margin: 0;
   padding: 1rem 1.15rem;
   border: 1px solid var(--line);
-  border-radius: 1.2rem;
+  border-radius: var(--corner);
   background: var(--surface-strong);
   overflow: auto;
 }
@@ -289,14 +309,14 @@ body::before {
 .page-content img {
   width: 100%;
   height: auto;
-  border-radius: 1.5rem;
+  border-radius: var(--corner);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
 
 .site-footer {
   padding: 1rem 1.25rem;
-  border-radius: 1.25rem;
+  border-radius: var(--corner);
   color: var(--muted);
   font-size: 0.95rem;
   animation: rise-in 880ms ease-out both;
@@ -312,17 +332,17 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #081116;
+  background: #050605;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #345161;
-  border-radius: 999px;
-  border: 3px solid #081116;
+  background-color: #4b5320;
+  border-radius: var(--corner);
+  border: 3px solid #050605;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #47697d;
+  background-color: #6d7d34;
 }
 
 @keyframes rise-in {
@@ -344,7 +364,7 @@ body::before {
   }
 
   .site-header {
-    border-radius: 1.5rem;
+    border-radius: var(--corner);
     align-items: flex-start;
     flex-direction: column;
   }
@@ -360,7 +380,7 @@ body::before {
 
   .page-content > div {
     padding: 1.4rem;
-    border-radius: 1.5rem;
+    border-radius: var(--corner);
   }
 
   .page-content ul,
@@ -369,7 +389,7 @@ body::before {
   }
 
   .page-content blockquote {
-    border-radius: 1.1rem;
+    border-radius: var(--corner);
   }
 }
 
