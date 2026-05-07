@@ -156,9 +156,10 @@ body::before {
 .page-content h1 {
   max-width: 100%;
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-  font-size: 5.4rem;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
   line-height: 0.95;
   letter-spacing: 0;
+  white-space: nowrap;
   color: #eef2ee;
   text-shadow:
     -1px -1px 0 rgba(215, 221, 216, 0.86),
@@ -386,6 +387,7 @@ body::before {
 
   .page-content h1 {
     font-size: 2.4rem;
+    white-space: normal;
   }
 
   .page-content ul,
