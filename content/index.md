@@ -1,4 +1,4 @@
-# Tom's Precision Tech
+# Tom's Precision&nbsp;Tech
 
 A portfolio focused on CAD/CAM projects, machining workflows, and practical technical problem-solving.
 

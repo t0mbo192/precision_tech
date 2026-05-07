@@ -95,7 +95,8 @@ body::before {
   color: var(--text);
   text-decoration: none;
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-  max-width: 16rem;
+  max-width: none;
+  white-space: nowrap;
   font-size: 1rem;
   letter-spacing: 0.05em;
   line-height: 1.15;
@@ -153,9 +154,9 @@ body::before {
 }
 
 .page-content h1 {
-  max-width: 12ch;
+  max-width: 100%;
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-  font-size: clamp(3rem, 8vw, 5.4rem);
+  font-size: 5.4rem;
   line-height: 0.95;
   letter-spacing: 0;
   color: #eef2ee;
@@ -383,6 +384,10 @@ body::before {
     border-radius: var(--corner);
   }
 
+  .page-content h1 {
+    font-size: 2.4rem;
+  }
+
   .page-content ul,
   .page-content ol {
     grid-template-columns: 1fr;
@@ -390,6 +395,12 @@ body::before {
 
   .page-content blockquote {
     border-radius: var(--corner);
+  }
+}
+
+@media (max-width: 360px) {
+  .page-content h1 {
+    font-size: 2.1rem;
   }
 }
 
