@@ -6,6 +6,9 @@ from markdown_blocks import BlockType, block_to_block_type, markdown_to_blocks
 from textnode import TextNode, TextType, text_node_to_html
 
 
+PROJECT_LIST_TOKEN = "{{ ProjectList }}"
+
+
 def normalize_basepath(basepath):
     if not basepath or basepath == "/":
         return "/"
@@ -107,7 +110,81 @@ def extract_title(markdown):
     raise ValueError("No title found in markdown")
 
 
-def generate_page(from_path, template_path, dest_path, basepath="/"):
+def extract_summary(markdown):
+    for block in markdown_to_blocks(markdown):
+        if block.startswith("# "):
+            continue
+        if block_to_block_type(block) == BlockType.PARAGRAPH:
+            return " ".join(block.split("\n"))
+    return ""
+
+
+def get_project_markdown_paths(projects_dir):
+    if not os.path.isdir(projects_dir):
+        return []
+
+    project_paths = []
+    for dirpath, dirnames, filenames in os.walk(projects_dir):
+        dirnames[:] = [
+            dirname
+            for dirname in sorted(dirnames)
+            if not dirname.startswith((".", "_"))
+        ]
+
+        if dirpath == projects_dir:
+            continue
+
+        if "index.md" in filenames:
+            project_paths.append(os.path.join(dirpath, "index.md"))
+
+    return sorted(project_paths)
+
+
+def project_url_from_path(project_path, projects_dir):
+    project_dir = os.path.dirname(project_path)
+    relative_project_dir = os.path.relpath(project_dir, projects_dir)
+    slug = relative_project_dir.replace(os.sep, "/").strip("/")
+    return f"/projects/{slug}/"
+
+
+def build_project_list_markdown(projects_dir):
+    project_paths = get_project_markdown_paths(projects_dir)
+    if not project_paths:
+        return "_No project pages yet._"
+
+    project_lines = []
+    for project_path in project_paths:
+        with open(project_path, encoding="utf-8") as markdown_file:
+            project_markdown = markdown_file.read()
+
+        title = extract_title(project_markdown)
+        summary = extract_summary(project_markdown)
+        url = project_url_from_path(project_path, projects_dir)
+
+        if summary:
+            project_lines.append(f"- [{title}]({url}) - {summary}")
+        else:
+            project_lines.append(f"- [{title}]({url})")
+
+    return "\n".join(project_lines)
+
+
+def expand_content_tokens(markdown, content_root):
+    if PROJECT_LIST_TOKEN not in markdown:
+        return markdown
+
+    projects_dir = os.path.join(content_root, "projects")
+    project_list = build_project_list_markdown(projects_dir)
+    return markdown.replace(PROJECT_LIST_TOKEN, project_list)
+
+
+def generate_page(
+    from_path,
+    template_path,
+    dest_path,
+    basepath="/",
+    content_root=None,
+):
     print(
         f"Generating page from {from_path} to {dest_path} using {template_path}"
     )
@@ -115,6 +192,8 @@ def generate_page(from_path, template_path, dest_path, basepath="/"):
 
     with open(from_path, encoding="utf-8") as markdown_file:
         markdown = markdown_file.read()
+    if content_root is not None:
+        markdown = expand_content_tokens(markdown, content_root)
 
     with open(template_path, encoding="utf-8") as template_file:
         template = template_file.read()
@@ -136,8 +215,15 @@ def generate_page(from_path, template_path, dest_path, basepath="/"):
 
 
 def generate_pages_recursive(
-    dir_path_content, template_path, dest_dir_path, basepath="/"
+    dir_path_content,
+    template_path,
+    dest_dir_path,
+    basepath="/",
+    content_root=None,
 ):
+    if content_root is None:
+        content_root = dir_path_content
+
     for entry in sorted(os.listdir(dir_path_content)):
         source_path = os.path.join(dir_path_content, entry)
         destination_path = os.path.join(dest_dir_path, entry)
@@ -148,6 +234,7 @@ def generate_pages_recursive(
                 template_path,
                 destination_path,
                 basepath,
+                content_root,
             )
             continue
 
@@ -155,4 +242,10 @@ def generate_pages_recursive(
             continue
 
         html_dest_path = os.path.splitext(destination_path)[0] + ".html"
-        generate_page(source_path, template_path, html_dest_path, basepath)
+        generate_page(
+            source_path,
+            template_path,
+            html_dest_path,
+            basepath,
+            content_root,
+        )

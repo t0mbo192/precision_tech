@@ -4,6 +4,7 @@ import unittest
 
 from copystatic import copy_files_recursive
 from markdown_to_html import (
+    build_project_list_markdown,
     extract_title,
     generate_page,
     generate_pages_recursive,
@@ -259,5 +260,75 @@ This is a paragraph with **bold** text.
             )
             self.assertIn('href="/"', generated_html)
 
-    if __name__ == "__main__":
-        unittest.main()
+    def test_build_project_list_markdown_finds_project_pages(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            project_dir = os.path.join(projects_dir, "fixture-plate")
+            os.makedirs(project_dir, exist_ok=True)
+
+            with open(
+                os.path.join(project_dir, "index.md"),
+                "w",
+                encoding="utf-8",
+            ) as project_file:
+                project_file.write("# Fixture Plate\n\nA repeatable setup project.")
+
+            project_list = build_project_list_markdown(projects_dir)
+
+        self.assertEqual(
+            project_list,
+            "- [Fixture Plate](/projects/fixture-plate/) - A repeatable setup project.",
+        )
+
+    def test_project_list_token_generates_project_archive(self):
+        template = """<html><head><title>{{ Title }}</title></head><body>{{ Content }}</body></html>"""
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            content_dir = os.path.join(tmpdir, "content")
+            public_dir = os.path.join(tmpdir, "public")
+            projects_dir = os.path.join(content_dir, "projects")
+            project_dir = os.path.join(projects_dir, "fixture-plate")
+            template_path = os.path.join(tmpdir, "template.html")
+
+            os.makedirs(project_dir, exist_ok=True)
+
+            with open(
+                os.path.join(projects_dir, "index.md"),
+                "w",
+                encoding="utf-8",
+            ) as projects_index:
+                projects_index.write("# Projects\n\n{{ ProjectList }}")
+
+            with open(
+                os.path.join(project_dir, "index.md"),
+                "w",
+                encoding="utf-8",
+            ) as project_file:
+                project_file.write("# Fixture Plate\n\nA repeatable setup project.")
+
+            with open(template_path, "w", encoding="utf-8") as template_file:
+                template_file.write(template)
+
+            generate_pages_recursive(
+                content_dir,
+                template_path,
+                public_dir,
+                "site_generator",
+            )
+
+            projects_html_path = os.path.join(
+                public_dir,
+                "projects",
+                "index.html",
+            )
+
+            with open(projects_html_path, encoding="utf-8") as projects_html:
+                generated = projects_html.read()
+
+        self.assertIn(
+            '<li><a href="/site_generator/projects/fixture-plate/">Fixture Plate</a> - A repeatable setup project.</li>',
+            generated,
+        )
+
+if __name__ == "__main__":
+    unittest.main()

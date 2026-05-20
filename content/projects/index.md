@@ -16,8 +16,8 @@ A growing list of CAD/CAM work, machining support ideas, and coding projects tha
 2. **Project Support Tools** - Coding projects that help organize information, speed up planning, or make technical details easier to track.
 3. **Portfolio Infrastructure** - The site itself, built as a simple foundation for documenting manufacturing work alongside selected software projects.
 
-## What comes next
+## Project archive
 
-This page can grow into a fuller archive with CAD screenshots, CAM views, setup details, process notes, and finished project summaries as more work gets added.
+{{ ProjectList }}
 
 [Back home](/)
