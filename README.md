@@ -1,4 +1,6 @@
-# site_generator
+# Tom's Precision Tech
+
+A portfolio site for CAD/CAM and machining projects, built with a custom Python static site generator.
 
 ## Adding projects
 
