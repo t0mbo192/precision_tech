@@ -9,20 +9,31 @@
 
   <body>
     <div class="page-shell">
-      <header class="site-header">
-        <a class="site-brand" href="/precision_tech/">Tom's Precision&nbsp;Tech</a>
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="/precision_tech/">Home</a>
-          <a href="/precision_tech/projects">Projects</a>
-          <a href="/precision_tech/contact">Contact</a>
-        </nav>
-      </header>
+      <div class="terminal">
+        <div class="terminal-bar" aria-hidden="true">
+          <span class="terminal-dots"><i></i><i></i><i></i></span>
+          <span class="terminal-title">tom@precision-tech: ~</span>
+          <span class="terminal-meta">bash</span>
+        </div>
 
-      <article class="page-content"><div><h1>Projects</h1><p>A growing list of CAD/CAM work, machining support ideas, and coding projects that help improve how the work gets done.</p><blockquote>Precision-focused manufacturing projects, with software tools where they add value.</blockquote><h2>CAD/CAM projects</h2><ol><li><b>Part Modeling and CAM Programming</b> - Projects centered on taking a part from concept or print into a machining-ready model, then building toolpaths that reflect real setup and production needs.</li><li><b>Fixture and Process Development</b> - Work focused on holding strategy, repeatability, tool access, and the small process decisions that make machining more efficient.</li><li><b>Setup and Documentation Systems</b> - Templates, notes, and planning workflows that help make handoff, setup, and repeat work more consistent.</li></ol><h2>Coding projects</h2><ol><li><b>Workflow Utilities</b> - Small scripts and automations that reduce repetitive admin or shop-floor prep work.</li><li><b>Project Support Tools</b> - Coding projects that help organize information, speed up planning, or make technical details easier to track.</li><li><b>Portfolio Infrastructure</b> - The site itself, built as a simple foundation for documenting manufacturing work alongside selected software projects.</li></ol><h2>Project archive</h2><ul><li><a href="/precision_tech/projects/fixture-plate-setup/">Fixture Plate Setup</a> - A setup and CAM planning project for repeatable fixture work.</li></ul><p><a href="/precision_tech/">Back home</a></p></div></article>
+        <div class="terminal-body">
+          <header class="site-header">
+            <a class="site-brand" href="/precision_tech/"><span class="prompt-user">tom</span>@<span class="prompt-host">precision-tech</span></a>
+            <nav class="site-nav" aria-label="Primary navigation">
+              <a href="/precision_tech/">~/home</a>
+              <a href="/precision_tech/projects">~/projects</a>
+              <a href="/precision_tech/contact">~/contact</a>
+            </nav>
+          </header>
 
-      <footer class="site-footer">
-        <p>Built with a custom Python static site generator.</p>
-      </footer>
+          <article class="page-content"><div><h1>Projects</h1><p>A growing archive of CAD/CAM work, machining support ideas, and coding projects that improve how the work gets done.</p><blockquote>Precision-focused manufacturing projects, with software tools where they add value.</blockquote><h2>CAD/CAM projects</h2><ol><li><b>Part Modeling and CAM Programming</b> - Projects centered on taking a part from concept or print into a machining-ready model, then building toolpaths that reflect real setup and production needs.</li><li><b>Fixture and Process Development</b> - Work focused on holding strategy, repeatability, tool access, and the small process decisions that make machining more efficient.</li><li><b>Setup and Documentation Systems</b> - Templates, notes, and planning workflows that help make handoff, setup, and repeat work more consistent.</li></ol><h2>Coding projects</h2><ol><li><b>Workflow Utilities</b> - Small scripts and automations that reduce repetitive admin or shop-floor prep work.</li><li><b>Project Support Tools</b> - Coding projects that help organize information, speed up planning, or make technical details easier to track.</li><li><b>Portfolio Infrastructure</b> - The site itself, built as a simple foundation for documenting manufacturing work alongside selected software projects.</li></ol><h2>Project archive</h2><ul><li><a href="/precision_tech/projects/sensor-housing-soft-jaws/">Soft Jaw Fixture for a Sensor Housing Run</a> - A start-to-finish sample walkthrough: machined soft jaws and CAM programming for a 24-piece run of 6061 aluminum sensor housings. Every image below is a placeholder slot — swap in real screenshots and shop photos as they get captured.</li></ul><p><a href="/precision_tech/">Back home</a></p></div></article>
+
+          <footer class="site-footer">
+            <p class="footer-prompt" aria-hidden="true"><span class="prompt-user">tom</span>@<span class="prompt-host">precision-tech</span>:~$ <span class="cursor">&#9608;</span></p>
+            <p>// built with a custom python static site generator — no frameworks, no trackers</p>
+          </footer>
+        </div>
+      </div>
     </div>
   </body>
 </html>

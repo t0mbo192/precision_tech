@@ -1,10 +1,10 @@
-# Tom's Precision&nbsp;Tech
+# Tom's Precision Tech
 
-A portfolio focused on CAD/CAM projects, machining workflows, and practical technical problem-solving.
+CAD/CAM programming, machining workflows, and practical technical problem-solving — documented step by step, straight from the shop.
 
 > CAD/CAM first, with coding and automation projects supporting the work.
 
-This site is where I collect design-to-manufacturing work, process ideas, and the code utilities that help make production cleaner, faster, and easier to repeat.
+This site is where I collect design-to-manufacturing work: part models, toolpaths, setup notes, and the code utilities that make production cleaner, faster, and easier to repeat.
 
 ## What I focus on
 
@@ -20,7 +20,9 @@ This site is where I collect design-to-manufacturing work, process ideas, and th
 
 ## Next up
 
-The next stage is turning this into a stronger project archive with actual part examples, setup notes, screenshots, and a clearer mix of manufacturing work and supporting code.
+The next stage is filling the project archive with real part examples, setup notes, and screenshots. A **sample walkthrough** is already loaded so the layout is ready — it sets the format every project will follow.
+
+[View the sample walkthrough](/projects/sensor-housing-soft-jaws/)
 
 [Browse projects](/projects)
 

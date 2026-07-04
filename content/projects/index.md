@@ -1,6 +1,6 @@
 # Projects
 
-A growing list of CAD/CAM work, machining support ideas, and coding projects that help improve how the work gets done.
+A growing archive of CAD/CAM work, machining support ideas, and coding projects that improve how the work gets done.
 
 > Precision-focused manufacturing projects, with software tools where they add value.
 

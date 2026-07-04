@@ -2,9 +2,9 @@
 
 If this direction lines up with the kind of CAD/CAM or technical project support you need, this is where the conversation can start.
 
-The quickest way to reach me is by email: [hello@example.com](mailto:hello@example.com)
+The quickest way to reach me is by **email**: [hello@example.com](mailto:hello@example.com)
 
-You can also look through the current project list here: [Projects](/projects)
+You can also look through the **current project list** here: [Projects](/projects)
 
 ## What to send
 
