@@ -91,34 +91,8 @@ body::before {
   letter-spacing: 0.06em;
 }
 
-.terminal-dots {
-  display: flex;
-  gap: 0.45rem;
-}
-
-.terminal-dots i {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--muted);
-  opacity: 0.55;
-}
-
-.terminal-dots i:nth-child(1) {
-  background: #ff5f56;
-}
-
-.terminal-dots i:nth-child(2) {
-  background: #ffbd2e;
-}
-
-.terminal-dots i:nth-child(3) {
-  background: #27c93f;
-}
-
 .terminal-title {
   flex: 1;
-  text-align: center;
 }
 
 .terminal-meta {
