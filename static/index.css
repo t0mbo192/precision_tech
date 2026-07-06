@@ -63,26 +63,6 @@ body {
   overflow: hidden;
 }
 
-.terminal-bar {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 1.25rem;
-  border-bottom: 1px solid var(--line);
-  background: rgba(236, 234, 228, 0.03);
-  font-size: 0.75rem;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-
-.terminal-title {
-  flex: 1;
-}
-
-.terminal-meta {
-  opacity: 0.7;
-}
-
 .terminal-body {
   padding: 1.75rem clamp(1.25rem, 4vw, 3rem) 2.5rem;
 }
@@ -450,10 +430,6 @@ body {
   .page-shell {
     width: calc(100% - 1.5rem);
     padding-top: 1.25rem;
-  }
-
-  .terminal-meta {
-    display: none;
   }
 
   .site-header {
