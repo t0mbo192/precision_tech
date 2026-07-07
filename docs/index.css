@@ -87,12 +87,9 @@ body {
   letter-spacing: 0.05em;
 }
 
-.prompt-user {
-  color: var(--accent);
-}
-
+.prompt-user,
 .prompt-host {
-  color: var(--syn-blue);
+  color: var(--text);
 }
 
 .site-nav {
