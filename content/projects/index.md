@@ -1,20 +1,25 @@
 # Projects
 
-A growing archive of CAD/CAM work, machining support ideas, and coding projects that improve how the work gets done.
+A growing archive of the work behind an IT and cybersecurity transition — systems, scripting, and the hands-on technical projects that back it up.
 
-> Precision-focused manufacturing projects, with software tools where they add value.
+> Security-minded engineering: validate early, automate the repetitive, document everything.
 
-## CAD/CAM projects
+## Systems, IT and security
 
-1. **Part Modeling and CAM Programming** - Projects centered on taking a part from concept or print into a machining-ready model, then building toolpaths that reflect real setup and production needs.
-2. **Fixture and Process Development** - Work focused on holding strategy, repeatability, tool access, and the small process decisions that make machining more efficient.
-3. **Setup and Documentation Systems** - Templates, notes, and planning workflows that help make handoff, setup, and repeat work more consistent.
+1. **Command-line and Linux** - Everyday work in the shell across Linux and Windows, with Git and virtual machines as standard tools.
+2. **Hardware and IT support** - On-site diagnosis and repair of desktops, laptops, and POS systems, backed by Lenovo and Dell hardware certifications.
+3. **Security fundamentals** - Coursework and self-study in operating systems, networking, and the practices behind keeping systems trustworthy.
 
-## Coding projects
+## Software and automation
 
-1. **Workflow Utilities** - Small scripts and automations that reduce repetitive admin or shop-floor prep work.
-2. **Project Support Tools** - Coding projects that help organize information, speed up planning, or make technical details easier to track.
-3. **Portfolio Infrastructure** - The site itself, built as a simple foundation for documenting manufacturing work alongside selected software projects.
+1. **G-code parsing and validation** - Python tooling that reads NC programs and flags errors during review instead of at the machine.
+2. **Workflow automation** - Scripts and AI-assisted tooling that standardize output and take the repetition out of technical prep work.
+3. **Portfolio infrastructure** - This site, built on a custom Python static site generator with its own test suite.
+
+## Engineering and CAD
+
+1. **Part modeling** - Taking a part from print to a manufacturing-ready CAD model, then to toolpaths that reflect real setup and production.
+2. **Multi-axis CAM** - Mastercam programming for complex geometry across mills, lathes, and 5-axis equipment.
 
 ## Project archive
 
