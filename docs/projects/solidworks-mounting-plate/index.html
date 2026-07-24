@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modeling a Mounting Plate in SolidWorks</title>
+    <link href="/precision_tech/index.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <div class="terminal">
+        <div class="terminal-body">
+          <header class="site-header">
+            <a class="site-brand" href="/precision_tech/"><span class="prompt-user">tom</span>@<span class="prompt-host">precision-tech</span></a>
+            <nav class="site-nav" aria-label="Primary navigation">
+              <a href="/precision_tech/">~/home</a>
+              <a href="/precision_tech/projects">~/projects</a>
+              <a href="/precision_tech/contact">~/contact</a>
+            </nav>
+          </header>
+
+          <article class="page-content"><div><h1>Modeling a Mounting Plate in SolidWorks</h1><p>A feature-by-feature walkthrough of modeling a bolt-on mounting plate in SolidWorks: a rectangular plate with a central bore and four counterbored holes for 5/16 socket head cap screws.</p><blockquote>Feature-based modeling: build the part the way it would actually be made, one deliberate step at a time.</blockquote><h2>Overview</h2><p>It's a small part, but it exercises the whole core modeling workflow — sketch, extrude, place holes, then refine with fillets and chamfers. The finished plate is a real-world component: it bolts to a mating surface with four corner screws and passes a shaft or fitting through the center bore.</p><p>Modeling starts with picking the right first feature, the one everything else references. For a plate like this, that's the rectangular body. Get the base sketch fully defined and the rest of the features hang off it cleanly.</p><h2>Step 01 — Base sketch and extrude</h2><p>The first feature sets the overall footprint. I sketched the outer profile as a fully dimensioned rectangle, 3.50 in by 2.50 in, on the front plane, then extruded it to the plate thickness. Fully defining the sketch here, with no under-constrained geometry, keeps every later feature stable when a dimension changes.</p><p><img src="/precision_tech/images/projects/mounting-plate/01-sketch-extrude.png" alt="Sketch of the plate profile dimensioned 3.50 by 2.50 inches, extruded to thickness"></img></p><p><i>fig 01 — base sketch, 3.50 by 2.50, extruded to the plate body</i></p><h2>Step 02 — Bore and mounting holes</h2><p>Next, the holes. A single bore through the center passes the main feature; four counterbored holes in the corners take 5/16 socket head cap screws so the heads sit flush below the surface. Placing them with the Hole Wizard and the proper fastener callout keeps the counterbore diameter and depth correct for the screw instead of guessing dimensions.</p><p><img src="/precision_tech/images/projects/mounting-plate/02-hole-features.png" alt="Plate with a center bore and four counterbored corner holes"></img></p><p><i>fig 02 — center bore plus four counterbores sized for 5/16 socket head cap screws</i></p><h2>Step 03 — Corner fillets and chamfers</h2><p>With the functional features in place, the part gets refined. Fillets on the four outside corners remove the sharp edges, and chamfers break the top edges of the counterbores. These aren't only cosmetic: rounded corners are safer to handle and easier to machine, and chamfered hole edges help the screws start clean.</p><p><img src="/precision_tech/images/projects/mounting-plate/03-fillets-chamfers.png" alt="Plate with rounded corner fillets and chamfered counterbore edges"></img></p><p><i>fig 03 — corner fillets and counterbore chamfers added</i></p><h2>Step 04 — Back-side chamfer</h2><p>The last feature breaks the back edge. A chamfer around the back face finishes the part and removes the sharp burr edge left where the extrude meets the back plane — the kind of detail that matters once a part is actually handled and assembled.</p><p><img src="/precision_tech/images/projects/mounting-plate/04-back-chamfer.png" alt="Plate with a chamfer added around the back edge"></img></p><p><i>fig 04 — back-side edge chamfer, part complete</i></p><h2>What it demonstrates</h2><ul><li>Choosing the right base feature and fully defining the base sketch</li><li>Sizing holes to real fasteners with the Hole Wizard rather than raw numbers</li><li>Using fillets and chamfers deliberately, for function as much as finish</li><li>A clean, ordered feature tree that stays editable as requirements change</li></ul><p><a href="/precision_tech/projects">Back to projects</a></p></div></article>
+
+          <footer class="site-footer">
+            <p class="footer-prompt" aria-hidden="true"><span class="prompt-user">tom</span>@<span class="prompt-host">precision-tech</span>:~$ <span class="cursor">&#9608;</span></p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,15 +1,17 @@
 # Contact
 
-If this direction lines up with the kind of CAD/CAM or technical project support you need, this is where the conversation can start.
+If you're hiring for IT or cybersecurity, or want to talk through a technical project, this is the place to start.
 
-The quickest way to reach me is by **email**: [hello@example.com](mailto:hello@example.com)
+The quickest way to reach me is by **email**: [TomLett192@gmail.com](mailto:TomLett192@gmail.com)
 
-You can also look through the **current project list** here: [Projects](/projects)
+You can also find my code on **GitHub**: [github.com/t0mbo192](https://github.com/t0mbo192)
 
-## What to send
+Or look through the **current project list** here: [Projects](/projects)
 
-- A short description of the part, process, or problem you are trying to solve
-- Any drawings, models, tolerances, materials, or machine details that matter
-- Your timeline, deliverables, and whether coding or automation support is part of the job
+## Good things to include
+
+- The role, team, or problem you're looking to fill or solve
+- What kind of work it involves — systems, security, support, scripting, or engineering
+- Timeline, location or remote, and anything else that helps me tell you whether I'm a fit
 
 [Back home](/)

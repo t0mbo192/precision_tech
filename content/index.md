@@ -1,17 +1,21 @@
-# Tom's Precision Tech
+# Tom Lett — IT and Cybersecurity
 
-CAD/CAM programming, machining workflows, and practical technical problem-solving — documented step by step, straight from the shop.
+Systems, security, and automation — built on 18+ years of hands-on technical work and self-taught software development. Currently focused on moving into IT and cybersecurity.
 
-> CAD/CAM first, with coding and automation projects supporting the work.
+> Comfortable at the command line, on the shop floor, and in the codebase.
 
-This site is where I collect design-to-manufacturing work: part models, toolpaths, setup notes, and the code utilities that make production cleaner, faster, and easier to repeat.
+I'm a technical generalist moving into IT and cybersecurity. Nearly two decades of precision manufacturing taught me to catch problems before they get expensive; self-taught Python, Linux, and Git turned that instinct into working tools. This site collects the projects behind the transition.
 
-## What I focus on
+## What I work on
 
-- CAD models and machining-ready part geometry
-- CAM strategies, toolpaths, and setup planning for real production work
-- Shop-friendly code and automations that reduce repetitive tasks
+- Systems and networking, Linux administration, and command-line workflows
+- Python scripting and automation that validates input and catches errors early
+- Hands-on hardware, IT support, and engineering projects
+
+## Background in one line
+
+CNC programmer and machinist by trade, self-taught developer by habit, with university computer science coursework and on-site IT support experience — now pointing all of it at security.
 
 [Browse projects](/projects)
 
-[Start a conversation](/contact)
+[Get in touch](/contact)

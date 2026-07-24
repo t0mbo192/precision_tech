@@ -1,6 +1,6 @@
 # Tom's Precision Tech
 
-A portfolio site for CAD/CAM and machining projects, built with a custom Python static site generator.
+A personal IT, cybersecurity, and technical portfolio for Tom Lett, built with a custom Python static site generator. It collects systems, scripting, and hands-on engineering projects behind a move into IT and security.
 
 ## Adding projects
 
@@ -11,7 +11,7 @@ builds its archive from those folders when the site is regenerated.
 Use the helper command to scaffold a new project:
 
 ```bash
-python3 src/new_project.py "Fixture Plate Setup" --summary "A setup and CAM planning project for repeatable fixture work."
+python3 src/new_project.py "Home Lab Network Segmentation" --summary "Setting up VLANs and firewall rules on a small home lab to practice network isolation."
 ```
 
 Then edit the generated Markdown file and rebuild:
@@ -19,3 +19,6 @@ Then edit the generated Markdown file and rebuild:
 ```bash
 ./build.sh
 ```
+
+Images go under `static/images/`; reference them from Markdown with an
+absolute path such as `/images/projects/<slug>/screenshot.png`.
