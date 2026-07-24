@@ -1,6 +1,6 @@
-# Tom Lett — IT and Cybersecurity
+# Tom's Precision Tech
 
-Systems, security, and automation — built on 18+ years of hands-on technical work and self-taught software development. Currently focused on moving into IT and cybersecurity.
+The portfolio of Tom Lett — precision-minded technical work, now moving toward IT and cybersecurity. Systems, security, and automation, built on 18+ years of hands-on manufacturing and self-taught software development.
 
 > Comfortable at the command line, on the shop floor, and in the codebase.
 
