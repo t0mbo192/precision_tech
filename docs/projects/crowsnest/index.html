@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>crowsnest — Seeing What a Machine Talks To</title>
+    <link href="/precision_tech/index.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <div class="terminal">
+        <div class="terminal-body">
+          <header class="site-header">
+            <a class="site-brand" href="/precision_tech/"><span class="prompt-user">tom</span>@<span class="prompt-host">precision-tech</span></a>
+            <nav class="site-nav" aria-label="Primary navigation">
+              <a href="/precision_tech/">~/home</a>
+              <a href="/precision_tech/projects">~/projects</a>
+              <a href="/precision_tech/contact">~/contact</a>
+            </nav>
+          </header>
+
+          <article class="page-content"><div><h1>crowsnest — Seeing What a Machine Talks To</h1><p>A terminal tool that answers one question about network traffic: what is this machine talking to, and what is talking to it? It reads the same packets Wireshark does and reports each host once, in plain language, then stays quiet.</p><blockquote>Wireshark tells you everything. crowsnest tells you who.</blockquote><h2>Overview</h2><p>Packet capture gives you everything and, in doing so, gives you nothing you can act on quickly. Open Wireshark on a busy interface and you get thousands of rows of frames when the actual question is much smaller: which hosts has this machine contacted, and which ones reached in from outside?</p><p>crowsnest sits on that question alone. It reads live traffic through <code>tshark</code>, resolves each host to a name and the organisation behind it, and prints one line the first time a host appears. No repeats, no per-packet noise.</p><pre><code>crowsnest live · eth0 · this machine 192.168.1.120
+each host is reported once, when first seen. Ctrl-C for a summary.
+08:22:13  ↑  github.com                     GitHub - code hosting
+08:22:13  ↑  ord37s57-in-f10.1e100.net      Google infrastructure
+08:22:13  ↑  browser-intake-datadoghq.com   Datadog - monitoring / telemetry
+08:22:14  ↑  20.42.65.92                    Microsoft Corporation
+08:22:19  ↓  laptop.lan                     Local network device
+08:22:24  ↓  203.0.113.5                    DigitalOcean, LLC
+</code></pre><p>The direction marker carries most of the value. <code>↑</code> means this machine opened the connection; <code>↓</code> means something else opened it. On a quiet host, an unexpected <code>↓</code> is the line worth reading twice.</p><h2>Naming the other end</h2><p>An address like <code>20.42.65.92</code> has no reverse DNS name, which makes it useless at a glance. crowsnest resolves ownership from an ASN database, fetched once with <code>crowsnest asn --fetch</code>, so that address renders as "Microsoft Corporation" instead. Turning anonymous numbers into recognisable organisations is what makes a scrolling list scannable.</p><p>For a framed view instead of a stream, <code>--dashboard</code> gives live transfer rates and a search box over the same data.</p><h2>Being honest about the limits</h2><p>Almost all traffic is encrypted. crowsnest reports <i>which hosts</i> were contacted — derived from DNS lookups and the server name in the TLS handshake — and never page contents or URLs. That is a hard limit for anything reading packets, not a gap in this tool.</p><p>Stating that plainly in the documentation matters more than it looks. A security tool that overstates its reach teaches the person using it the wrong thing about their own network.</p><h2>Packaging</h2><p>The tool is only useful if it installs without a fight, so each platform gets a first-class path:</p><ul><li><b>macOS</b> — a Homebrew tap, <code>brew install t0mbo192/tap/crowsnest</code></li><li><b>Debian, Ubuntu, Raspberry Pi OS</b> — a <code>.deb</code> package that pulls in its own dependencies</li><li><b>Windows</b> — a PowerShell install script</li><li><b>Other Linux</b> — a shell installer</li></ul><p>Wireshark is the one real dependency, since <code>tshark</code> does the capture. The macOS and Debian packages pull it in automatically; the script installers check for it and offer to install it.</p><h2>What it demonstrates</h2><ul><li>Reading live network traffic and reducing it to the signal a person actually needs</li><li>DNS and TLS SNI inspection, plus ASN lookups to attribute hosts to organisations</li><li>Deliberate scoping — building the small answer well rather than a Wireshark clone</li><li>Documenting a security tool's blind spots as prominently as its features</li><li>Cross-platform packaging and release engineering across four install channels</li></ul><p><a href="https://github.com/t0mbo192/crowsnest">View the repository on GitHub</a></p><p><a href="/precision_tech/projects">Back to projects</a></p></div></article>
+
+          <footer class="site-footer">
+            <p class="footer-prompt" aria-hidden="true"><span class="prompt-user">tom</span>@<span class="prompt-host">precision-tech</span>:~$ <span class="cursor">&#9608;</span></p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
