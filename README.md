@@ -1,6 +1,6 @@
 # Tom's Precision Tech
 
-A personal IT, cybersecurity, and technical portfolio for Tom Lett, built with a custom Python static site generator. It collects systems, scripting, and hands-on engineering projects behind a move into IT and security.
+A personal IT, cybersecurity, and technical portfolio for Tom Lett, built with a custom Python static site generator. It collects security tooling, automation, and hands-on engineering projects behind a move into IT and security.
 
 ## Adding projects
 
