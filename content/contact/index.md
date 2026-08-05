@@ -2,7 +2,7 @@
 
 If you're hiring for IT or cybersecurity, or want to talk through a technical project, this is the place to start.
 
-The quickest way to reach me is by **email**: [TomLett192@gmail.com](mailto:TomLett192@gmail.com)
+The quickest way to reach me is by **email**: [tomlett192@gmail.com](mailto:tomlett192@gmail.com)
 
 You can also find my code on **GitHub**: [github.com/t0mbo192](https://github.com/t0mbo192)
 
