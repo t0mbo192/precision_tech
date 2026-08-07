@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Chamfered block prompt mark">
+  <path d="M7 2h18l5 5v18l-5 5H7l-5-5V7Z" stroke="#eceae4" stroke-width="2" stroke-linejoin="round" />
+  <path d="m9.5 11.5 4.5 4.5-4.5 4.5" stroke="#d97757" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M16.5 21h6" stroke="#eceae4" stroke-width="2.2" stroke-linecap="round" />
+</svg>
