@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="TL bracket monogram">
-  <path d="M10 5H5v22h5M22 5h5v22h-5" stroke="#d97757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-  <path d="M9 11h7m-3.5 0v10M19 11v10h4.5" stroke="#eceae4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M6.5 5H3v22h3.5M25.5 5H29v22h-3.5" stroke="#d97757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M9.5 11H16m-3.25 0v10M18.5 11v10h4" stroke="#eceae4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
 </svg>
