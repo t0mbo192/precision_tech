@@ -1,12 +1,20 @@
 import os
+import re
 
+from frontmatter import split_frontmatter
 from htmlnode import ParentNode
 from inline_markdown import text_to_textnodes
 from markdown_blocks import BlockType, block_to_block_type, markdown_to_blocks
 from textnode import TextNode, TextType, text_node_to_html
 
 
-PROJECT_LIST_TOKEN = "{{ ProjectList }}"
+# Matches "{{ ProjectList }}" for every project, or "{{ ProjectList: slug }}"
+# for the projects whose front matter names that category.
+PROJECT_LIST_PATTERN = re.compile(
+    r"\{\{\s*ProjectList(?:\s*:\s*(?P<category>[A-Za-z0-9_-]+))?\s*\}\}"
+)
+
+EMPTY_CATEGORY_MARKDOWN = "_Nothing here yet — first write-up on the way._"
 
 
 def normalize_basepath(basepath):
@@ -147,15 +155,14 @@ def project_url_from_path(project_path, projects_dir):
     return f"/projects/{slug}/"
 
 
-def build_project_list_markdown(projects_dir):
-    project_paths = get_project_markdown_paths(projects_dir)
-    if not project_paths:
-        return "_No project pages yet._"
-
+def build_project_list_markdown(projects_dir, category=None):
     project_lines = []
-    for project_path in project_paths:
+    for project_path in get_project_markdown_paths(projects_dir):
         with open(project_path, encoding="utf-8") as markdown_file:
-            project_markdown = markdown_file.read()
+            metadata, project_markdown = split_frontmatter(markdown_file.read())
+
+        if category is not None and metadata.get("category") != category:
+            continue
 
         title = extract_title(project_markdown)
         summary = extract_summary(project_markdown)
@@ -166,16 +173,19 @@ def build_project_list_markdown(projects_dir):
         else:
             project_lines.append(f"- [{title}]({url})")
 
+    if not project_lines:
+        return EMPTY_CATEGORY_MARKDOWN
+
     return "\n".join(project_lines)
 
 
 def expand_content_tokens(markdown, content_root):
-    if PROJECT_LIST_TOKEN not in markdown:
-        return markdown
-
     projects_dir = os.path.join(content_root, "projects")
-    project_list = build_project_list_markdown(projects_dir)
-    return markdown.replace(PROJECT_LIST_TOKEN, project_list)
+
+    def replace_token(match):
+        return build_project_list_markdown(projects_dir, match.group("category"))
+
+    return PROJECT_LIST_PATTERN.sub(replace_token, markdown)
 
 
 def generate_page(
@@ -191,7 +201,7 @@ def generate_page(
     basepath = normalize_basepath(basepath)
 
     with open(from_path, encoding="utf-8") as markdown_file:
-        markdown = markdown_file.read()
+        _, markdown = split_frontmatter(markdown_file.read())
     if content_root is not None:
         markdown = expand_content_tokens(markdown, content_root)
 

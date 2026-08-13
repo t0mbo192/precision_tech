@@ -4,6 +4,7 @@ import unittest
 
 from copystatic import copy_files_recursive
 from markdown_to_html import (
+    EMPTY_CATEGORY_MARKDOWN,
     build_project_list_markdown,
     extract_title,
     generate_page,
@@ -329,6 +330,121 @@ This is a paragraph with **bold** text.
             '<li><a href="/site_generator/projects/fixture-plate/">Fixture Plate</a> - A repeatable setup project.</li>',
             generated,
         )
+
+    def _write_categorised_projects(self, projects_dir):
+        projects = (
+            ("fixture-plate", "cad-cam", "Fixture Plate", "A repeatable setup."),
+            ("win-audit", "tool-building", "win-audit", "A read-only audit."),
+        )
+        for slug, category, title, summary in projects:
+            project_dir = os.path.join(projects_dir, slug)
+            os.makedirs(project_dir, exist_ok=True)
+            with open(
+                os.path.join(project_dir, "index.md"), "w", encoding="utf-8"
+            ) as project_file:
+                project_file.write(
+                    f"---\ncategory: {category}\n---\n\n# {title}\n\n{summary}"
+                )
+
+    def test_project_list_filters_by_category(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            self._write_categorised_projects(projects_dir)
+
+            cad_cam = build_project_list_markdown(projects_dir, "cad-cam")
+            tools = build_project_list_markdown(projects_dir, "tool-building")
+            everything = build_project_list_markdown(projects_dir)
+
+        self.assertEqual(
+            cad_cam, "- [Fixture Plate](/projects/fixture-plate/) - A repeatable setup."
+        )
+        self.assertEqual(
+            tools, "- [win-audit](/projects/win-audit/) - A read-only audit."
+        )
+        self.assertEqual(len(everything.split("\n")), 2)
+
+    def test_project_list_reports_an_empty_category(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            self._write_categorised_projects(projects_dir)
+
+            home_lab = build_project_list_markdown(projects_dir, "home-lab")
+
+        self.assertEqual(home_lab, EMPTY_CATEGORY_MARKDOWN)
+
+    def test_untagged_project_is_excluded_from_every_category(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            project_dir = os.path.join(projects_dir, "stray")
+            os.makedirs(project_dir, exist_ok=True)
+            with open(
+                os.path.join(project_dir, "index.md"), "w", encoding="utf-8"
+            ) as project_file:
+                project_file.write("# Stray\n\nNo front matter here.")
+
+            categorised = build_project_list_markdown(projects_dir, "cad-cam")
+            everything = build_project_list_markdown(projects_dir)
+
+        self.assertEqual(categorised, EMPTY_CATEGORY_MARKDOWN)
+        self.assertEqual(everything, "- [Stray](/projects/stray/) - No front matter here.")
+
+    def test_category_tokens_render_separate_archives(self):
+        template = """<html><head><title>{{ Title }}</title></head><body>{{ Content }}</body></html>"""
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            content_dir = os.path.join(tmpdir, "content")
+            public_dir = os.path.join(tmpdir, "public")
+            projects_dir = os.path.join(content_dir, "projects")
+            template_path = os.path.join(tmpdir, "template.html")
+
+            self._write_categorised_projects(projects_dir)
+
+            with open(
+                os.path.join(projects_dir, "index.md"), "w", encoding="utf-8"
+            ) as projects_index:
+                projects_index.write(
+                    "# Projects\n\n"
+                    "## CAD/CAM\n\n{{ ProjectList: cad-cam }}\n\n"
+                    "## Home lab\n\n{{ ProjectList: home-lab }}"
+                )
+
+            with open(template_path, "w", encoding="utf-8") as template_file:
+                template_file.write(template)
+
+            generate_pages_recursive(content_dir, template_path, public_dir)
+
+            with open(
+                os.path.join(public_dir, "projects", "index.html"), encoding="utf-8"
+            ) as projects_html:
+                generated = projects_html.read()
+
+        self.assertIn('<a href="/projects/fixture-plate/">Fixture Plate</a>', generated)
+        self.assertNotIn("win-audit", generated)
+        self.assertIn("first write-up on the way", generated)
+
+    def test_generate_page_strips_front_matter_from_output(self):
+        template = """<html><head><title>{{ Title }}</title></head><body>{{ Content }}</body></html>"""
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            source_path = os.path.join(tmpdir, "index.md")
+            template_path = os.path.join(tmpdir, "template.html")
+            dest_path = os.path.join(tmpdir, "index.html")
+
+            with open(source_path, "w", encoding="utf-8") as source_file:
+                source_file.write("---\ncategory: cad-cam\n---\n\n# Plate\n\nBody text.")
+
+            with open(template_path, "w", encoding="utf-8") as template_file:
+                template_file.write(template)
+
+            generate_page(source_path, template_path, dest_path)
+
+            with open(dest_path, encoding="utf-8") as dest_file:
+                generated = dest_file.read()
+
+        self.assertIn("<title>Plate</title>", generated)
+        self.assertIn("<p>Body text.</p>", generated)
+        self.assertNotIn("category:", generated)
+
 
 if __name__ == "__main__":
     unittest.main()

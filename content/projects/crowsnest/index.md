@@ -1,3 +1,7 @@
+---
+category: tool-building
+---
+
 # crowsnest — Seeing What a Machine Talks To
 
 A terminal tool that answers one question about network traffic: what is this machine talking to, and what is talking to it? It reads the same packets Wireshark does and reports each host once, in plain language, then stays quiet.

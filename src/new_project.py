@@ -8,6 +8,10 @@ DEFAULT_SUMMARY = (
     "Short summary of what the project is, why it matters, and what changed."
 )
 
+# Must match the {{ ProjectList: ... }} tokens in content/projects/index.md.
+CATEGORIES = ("cad-cam", "tool-building", "home-lab")
+DEFAULT_CATEGORY = "tool-building"
+
 
 def slugify(title):
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
@@ -16,9 +20,13 @@ def slugify(title):
     return slug
 
 
-def project_template(title, summary):
+def project_template(title, summary, category):
     return textwrap.dedent(
         f"""\
+        ---
+        category: {category}
+        ---
+
         # {title}
 
         {summary}
@@ -56,6 +64,12 @@ def parse_args():
         "--slug",
         help="URL slug. Defaults to a lowercase version of the title.",
     )
+    parser.add_argument(
+        "--category",
+        default=DEFAULT_CATEGORY,
+        choices=CATEGORIES,
+        help="Section of the projects page this belongs under",
+    )
     return parser.parse_args()
 
 
@@ -71,7 +85,9 @@ def main():
 
     os.makedirs(project_dir, exist_ok=True)
     with open(project_path, "w", encoding="utf-8") as project_file:
-        project_file.write(project_template(args.title, args.summary))
+        project_file.write(
+            project_template(args.title, args.summary, args.category)
+        )
 
     print(f"Created {project_path}")
 

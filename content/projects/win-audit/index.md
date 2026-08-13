@@ -1,3 +1,7 @@
+---
+category: tool-building
+---
+
 # win-audit — Read-Only Windows Hardening Audit
 
 A PowerShell audit that checks the Windows settings which actually get exploited when they are missing, scores the result, and writes both a JSON file and a self-contained HTML report. It reads state and changes nothing — a guarantee enforced by a test, not just a promise in the README.

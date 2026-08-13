@@ -247,6 +247,12 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Archive entries lead with a linked title, then a summary. Weighting the
+   title keeps a list of long summaries scannable. */
+.page-content li > a:first-child {
+  font-weight: 700;
+}
+
 .page-content ul li::before {
   content: ">";
   position: absolute;

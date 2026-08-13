@@ -11,7 +11,9 @@ builds its archive from those folders when the site is regenerated.
 Use the helper command to scaffold a new project:
 
 ```bash
-python3 src/new_project.py "Home Lab Network Segmentation" --summary "Setting up VLANs and firewall rules on a small home lab to practice network isolation."
+python3 src/new_project.py "Home Lab Network Segmentation" \
+  --category home-lab \
+  --summary "Setting up VLANs and firewall rules on a small home lab to practice network isolation."
 ```
 
 Then edit the generated Markdown file and rebuild:
@@ -19,6 +21,29 @@ Then edit the generated Markdown file and rebuild:
 ```bash
 ./build.sh
 ```
+
+## Project categories
+
+Each project opens with a front matter block naming the section it belongs
+under on the projects page:
+
+```markdown
+---
+category: home-lab
+---
+
+# Project title
+```
+
+The categories are `cad-cam`, `tool-building`, and `home-lab`. A project with
+no category, or one naming a category the projects page doesn't list, is built
+as a page but left out of the archive — so a typo here hides a project rather
+than breaking the build.
+
+To add or rename a category, edit the heading and `{{ ProjectList: <slug> }}`
+token in `content/projects/index.md`, then update `CATEGORIES` in
+`src/new_project.py` to match. Sections are ordered by where their token sits
+on that page, and an empty one prints a short placeholder line instead.
 
 Images go under `static/images/`; reference them from Markdown with an
 absolute path such as `/images/projects/<slug>/screenshot.png`.
