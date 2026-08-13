@@ -1,3 +1,7 @@
+---
+category: cad-cam
+---
+
 # Modeling a Mounting Plate in SolidWorks
 
 A feature-by-feature walkthrough of modeling a bolt-on mounting plate in SolidWorks: a rectangular plate with a central bore and four counterbored holes for 5/16 socket head cap screws.

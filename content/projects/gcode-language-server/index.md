@@ -1,3 +1,7 @@
+---
+category: tool-building
+---
+
 # G-Code Language Server — The Linter G-Code Never Had
 
 Semantic diagnostics, hover documentation and completions for CNC G-code, built as a language server. A Python process tracks machine modal state line by line and catches the mistakes a syntax highlighter structurally cannot see; a thin TypeScript shim connects it to VS Code.
