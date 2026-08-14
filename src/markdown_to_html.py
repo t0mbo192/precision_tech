@@ -43,10 +43,21 @@ def paragraph_block_to_html_node(block):
     return ParentNode("p", text_to_children(paragraph_text))
 
 
+def slugify_heading(text):
+    """Turn heading text into an anchor id, e.g. "CAD/CAM" -> "cad-cam"."""
+    without_markup = re.sub(r"[*_`\[\]()]", "", text)
+    return re.sub(r"[^a-z0-9]+", "-", without_markup.lower()).strip("-")
+
+
 def heading_block_to_html_node(block):
     heading_level = get_heading_level(block)
     heading_text = block[heading_level + 1 :]
-    return ParentNode(f"h{heading_level}", text_to_children(heading_text))
+    slug = slugify_heading(heading_text)
+    return ParentNode(
+        f"h{heading_level}",
+        text_to_children(heading_text),
+        {"id": slug} if slug else None,
+    )
 
 
 def code_block_to_html_node(block):
@@ -165,7 +176,9 @@ def build_project_list_markdown(projects_dir, category=None):
             continue
 
         title = extract_title(project_markdown)
-        summary = extract_summary(project_markdown)
+        # A short "summary:" field keeps the archive scannable; without one,
+        # fall back to the project's opening paragraph.
+        summary = metadata.get("summary") or extract_summary(project_markdown)
         url = project_url_from_path(project_path, projects_dir)
 
         if summary:

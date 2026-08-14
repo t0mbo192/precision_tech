@@ -29,6 +29,12 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Anchored sections shouldn't land flush against the top of the viewport. */
+.page-content :is(h1, h2, h3)[id] {
+  scroll-margin-top: 1.5rem;
 }
 
 body {
@@ -457,6 +463,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {

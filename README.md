@@ -5,8 +5,8 @@ A personal IT, cybersecurity, and technical portfolio for Tom Lett, built with a
 ## Adding projects
 
 The easiest way to add a project is to create a Markdown page under
-`content/projects/<project-slug>/index.md`. The projects page automatically
-builds its archive from those folders when the site is regenerated.
+`content/projects/<project-slug>/index.md`. The home page automatically
+builds its project sections from those folders when the site is regenerated.
 
 Use the helper command to scaffold a new project:
 
@@ -25,23 +25,24 @@ Then edit the generated Markdown file and rebuild:
 ## Project categories
 
 Each project opens with a front matter block naming the section it belongs
-under on the projects page:
+under on the home page, plus the one-line summary shown there:
 
 ```markdown
 ---
 category: home-lab
+summary: One dry line describing what it is.
 ---
 
 # Project title
 ```
 
 The categories are `cad-cam`, `tool-building`, and `home-lab`. A project with
-no category, or one naming a category the projects page doesn't list, is built
+no category, or one naming a category the home page doesn't list, is built
 as a page but left out of the archive — so a typo here hides a project rather
 than breaking the build.
 
 To add or rename a category, edit the heading and `{{ ProjectList: <slug> }}`
-token in `content/projects/index.md`, then update `CATEGORIES` in
+token in `content/index.md`, then update `CATEGORIES` in
 `src/new_project.py` to match. Sections are ordered by where their token sits
 on that page, and an empty one prints a short placeholder line instead.
 

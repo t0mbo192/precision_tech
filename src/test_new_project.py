@@ -20,11 +20,11 @@ class TestNewProject(unittest.TestCase):
         self.assertIn("A repeatable setup project.", template)
         self.assertIn("[Back to projects](/projects)", template)
 
-    def test_project_template_writes_parsable_category_front_matter(self):
+    def test_project_template_writes_parsable_front_matter(self):
         template = project_template("Fixture Plate", "A summary.", "cad-cam")
         metadata, body = split_frontmatter(template)
 
-        self.assertEqual(metadata, {"category": "cad-cam"})
+        self.assertEqual(metadata, {"category": "cad-cam", "summary": "A summary."})
         self.assertTrue(body.startswith("# Fixture Plate"))
 
     def test_default_category_is_a_known_category(self):

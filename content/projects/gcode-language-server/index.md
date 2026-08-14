@@ -1,5 +1,6 @@
 ---
 category: tool-building
+summary: Diagnostics, hover docs and completions for CNC G-code, built as a language server.
 ---
 
 # G-Code Language Server — The Linter G-Code Never Had
@@ -65,4 +66,4 @@ That also makes the swap point obvious: keep the per-line check method on the pa
 
 [View the repository on GitHub](https://github.com/t0mbo192/gcode-language-server)
 
-[Back to projects](/projects)
+[Back to projects](/#projects)

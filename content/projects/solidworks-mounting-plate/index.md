@@ -1,5 +1,6 @@
 ---
 category: cad-cam
+summary: Modeling a bolt-on mounting plate in SolidWorks, one deliberate feature at a time.
 ---
 
 # Modeling a Mounting Plate in SolidWorks
@@ -53,4 +54,4 @@ _fig 04 — back-side edge chamfer, part complete_
 - Using fillets and chamfers deliberately, for function as much as finish
 - A clean, ordered feature tree that stays editable as requirements change
 
-[Back to projects](/projects)
+[Back to projects](/#projects)
