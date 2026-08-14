@@ -12,7 +12,7 @@ I'm a technical generalist moving into IT and cybersecurity. Nearly two decades 
 - Systems and networking, Linux administration, and command-line workflows
 - Hands-on hardware, IT support, and engineering projects
 
-## Background in one line
+## Background
 
 CNC programmer and machinist by trade, comfortable enough in Python and the shell to review, debug and extend what I build, with university computer science coursework and on-site IT support experience — now pointing all of it at security.
 
