@@ -1,5 +1,6 @@
 ---
 category: tool-building
+summary: Read-only PowerShell audit of the Windows settings that actually get exploited.
 ---
 
 # win-audit — Read-Only Windows Hardening Audit
@@ -48,4 +49,4 @@ Output goes to two places: JSON for anything that needs to consume the results, 
 
 _Source repository is currently private; happy to walk through the code on request._
 
-[Back to projects](/projects)
+[Back to projects](/#projects)

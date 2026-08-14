@@ -65,7 +65,7 @@ class TestMarkdownToHtml(unittest.TestCase):
         html = node.to_html()
         self.assertEqual(
             html,
-            "<div><h1>Main heading</h1><blockquote>quoted <i>text</i> across lines</blockquote><ul><li>first item</li><li>second <b>item</b></li></ul><ol><li>ordered one</li><li>ordered two</li></ol></div>",
+            "<div><h1 id=\"main-heading\">Main heading</h1><blockquote>quoted <i>text</i> across lines</blockquote><ul><li>first item</li><li>second <b>item</b></li></ul><ol><li>ordered one</li><li>ordered two</li></ol></div>",
         )
 
     def test_missing_title_raises(self):
@@ -116,7 +116,7 @@ This is a paragraph with **bold** text.
 
         self.assertEqual(
             generated,
-            "<html><head><title>Hello World</title></head><body><div><h1>Hello World</h1><p>This is a paragraph with <b>bold</b> text.</p></div></body></html>",
+            "<html><head><title>Hello World</title></head><body><div><h1 id=\"hello-world\">Hello World</h1><p>This is a paragraph with <b>bold</b> text.</p></div></body></html>",
         )
 
     def test_generate_pages_recursive_creates_nested_html_files(self):
@@ -162,11 +162,11 @@ This is a paragraph with **bold** text.
 
         self.assertEqual(
             root_html,
-            "<html><head><title>Home</title></head><body><div><h1>Home</h1><p>Welcome home.</p></div></body></html>",
+            "<html><head><title>Home</title></head><body><div><h1 id=\"home\">Home</h1><p>Welcome home.</p></div></body></html>",
         )
         self.assertEqual(
             nested_html,
-            "<html><head><title>Post</title></head><body><div><h1>Post</h1><p>Nested content.</p></div></body></html>",
+            "<html><head><title>Post</title></head><body><div><h1 id=\"post\">Post</h1><p>Nested content.</p></div></body></html>",
         )
 
     def test_generate_page_rewrites_root_relative_urls_with_basepath(self):
@@ -345,6 +345,36 @@ This is a paragraph with **bold** text.
                 project_file.write(
                     f"---\ncategory: {category}\n---\n\n# {title}\n\n{summary}"
                 )
+
+    def test_headings_get_anchor_ids(self):
+        html = markdown_to_html_node("## Projects\n\n### CAD/CAM").to_html()
+
+        self.assertIn('<h2 id="projects">Projects</h2>', html)
+        self.assertIn('<h3 id="cad-cam">CAD/CAM</h3>', html)
+
+    def test_heading_id_ignores_inline_markup(self):
+        html = markdown_to_html_node("## Tool **building**").to_html()
+
+        self.assertIn('<h2 id="tool-building">', html)
+
+    def test_front_matter_summary_overrides_opening_paragraph(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            project_dir = os.path.join(projects_dir, "win-audit")
+            os.makedirs(project_dir, exist_ok=True)
+            with open(
+                os.path.join(project_dir, "index.md"), "w", encoding="utf-8"
+            ) as project_file:
+                project_file.write(
+                    "---\ncategory: tool-building\nsummary: A short line.\n---\n\n"
+                    "# win-audit\n\nA much longer opening paragraph than the archive wants."
+                )
+
+            project_list = build_project_list_markdown(projects_dir)
+
+        self.assertEqual(
+            project_list, "- [win-audit](/projects/win-audit/) - A short line."
+        )
 
     def test_project_list_filters_by_category(self):
         with tempfile.TemporaryDirectory() as tmpdir:

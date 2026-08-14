@@ -1,5 +1,6 @@
 ---
 category: tool-building
+summary: Terminal tool that reports which hosts a machine is talking to, in plain language.
 ---
 
 # crowsnest — Seeing What a Machine Talks To
@@ -60,4 +61,4 @@ Wireshark is the one real dependency, since `tshark` does the capture. The macOS
 
 [View the repository on GitHub](https://github.com/t0mbo192/crowsnest)
 
-[Back to projects](/projects)
+[Back to projects](/#projects)

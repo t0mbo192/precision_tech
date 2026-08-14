@@ -25,6 +25,7 @@ def project_template(title, summary, category):
         f"""\
         ---
         category: {category}
+        summary: {summary}
         ---
 
         # {title}
