@@ -1,5 +1,6 @@
 ---
 category: tool-building
+label: G-Code Language Server
 summary: Real diagnostics and completions for CNC G-code.
 ---
 

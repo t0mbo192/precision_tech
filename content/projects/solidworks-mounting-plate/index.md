@@ -1,5 +1,6 @@
 ---
 category: cad-cam
+label: Mounting Plate in SolidWorks
 summary: Modeling a bolt-on plate, feature by feature.
 ---
 

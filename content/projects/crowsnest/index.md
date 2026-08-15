@@ -1,5 +1,6 @@
 ---
 category: tool-building
+label: crowsnest
 summary: Reports which hosts a machine is talking to.
 ---
 
