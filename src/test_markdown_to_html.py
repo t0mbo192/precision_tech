@@ -400,6 +400,42 @@ This is a paragraph with **bold** text.
 
         self.assertIn('<h2 id="tool-building">', html)
 
+    def test_front_matter_label_overrides_heading_in_archive(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            project_dir = os.path.join(projects_dir, "win-audit")
+            os.makedirs(project_dir, exist_ok=True)
+            with open(
+                os.path.join(project_dir, "index.md"), "w", encoding="utf-8"
+            ) as project_file:
+                project_file.write(
+                    "---\nlabel: win-audit\nsummary: A short line.\n---\n\n"
+                    "# win-audit — Read-Only Windows Hardening Audit\n\nBody."
+                )
+
+            project_list = build_project_list_markdown(projects_dir)
+
+        self.assertEqual(
+            project_list, "- [win-audit](/projects/win-audit/) - A short line."
+        )
+
+    def test_archive_falls_back_to_heading_without_a_label(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            projects_dir = os.path.join(tmpdir, "projects")
+            project_dir = os.path.join(projects_dir, "win-audit")
+            os.makedirs(project_dir, exist_ok=True)
+            with open(
+                os.path.join(project_dir, "index.md"), "w", encoding="utf-8"
+            ) as project_file:
+                project_file.write("# The Full Headline\n\nBody text.")
+
+            project_list = build_project_list_markdown(projects_dir)
+
+        self.assertEqual(
+            project_list,
+            "- [The Full Headline](/projects/win-audit/) - Body text.",
+        )
+
     def test_front_matter_summary_overrides_opening_paragraph(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             projects_dir = os.path.join(tmpdir, "projects")

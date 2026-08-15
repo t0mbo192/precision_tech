@@ -30,11 +30,16 @@ under on the home page, plus the one-line summary shown there:
 ```markdown
 ---
 category: home-lab
+label: Proxmox Host
 summary: One dry line describing what it is.
 ---
 
-# Project title
+# Proxmox Host — Everything the Lab Runs On
 ```
+
+`label` is optional. Give the page a full headline in the `#` heading, and
+use `label` for the short name the home page lists it under — without one,
+the archive falls back to the heading, subtitle and all.
 
 The categories are `cad-cam`, `tool-building`, and `home-lab`. A project with
 no category, or one naming a category the home page doesn't list, is built

@@ -1,5 +1,6 @@
 ---
 category: tool-building
+label: win-audit
 summary: Read-only audit of Windows hardening settings.
 ---
 

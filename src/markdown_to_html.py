@@ -175,9 +175,10 @@ def build_project_list_markdown(projects_dir, category=None):
         if category is not None and metadata.get("category") != category:
             continue
 
-        title = extract_title(project_markdown)
-        # A short "summary:" field keeps the archive scannable; without one,
-        # fall back to the project's opening paragraph.
+        # "label:" gives the archive a short name when the page's own headline
+        # carries a subtitle; "summary:" keeps the description to one line.
+        # Without either, fall back to the heading and opening paragraph.
+        title = metadata.get("label") or extract_title(project_markdown)
         summary = metadata.get("summary") or extract_summary(project_markdown)
         url = project_url_from_path(project_path, projects_dir)
 
