@@ -346,6 +346,49 @@ This is a paragraph with **bold** text.
                     f"---\ncategory: {category}\n---\n\n# {title}\n\n{summary}"
                 )
 
+    def test_home_link_is_omitted_on_the_landing_page_only(self):
+        template = (
+            "<html><head><title>{{ Title }}</title></head>"
+            "<body><nav>{{ HomeLink }}</nav>{{ Content }}</body></html>"
+        )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            content_dir = os.path.join(tmpdir, "content")
+            public_dir = os.path.join(tmpdir, "public")
+            project_dir = os.path.join(content_dir, "projects", "win-audit")
+            template_path = os.path.join(tmpdir, "template.html")
+
+            os.makedirs(project_dir, exist_ok=True)
+
+            with open(
+                os.path.join(content_dir, "index.md"), "w", encoding="utf-8"
+            ) as home_file:
+                home_file.write("# Home\n\nWelcome.")
+
+            with open(
+                os.path.join(project_dir, "index.md"), "w", encoding="utf-8"
+            ) as project_file:
+                project_file.write("# win-audit\n\nA project.")
+
+            with open(template_path, "w", encoding="utf-8") as template_file:
+                template_file.write(template)
+
+            generate_pages_recursive(content_dir, template_path, public_dir)
+
+            with open(
+                os.path.join(public_dir, "index.html"), encoding="utf-8"
+            ) as home_html:
+                home = home_html.read()
+
+            with open(
+                os.path.join(public_dir, "projects", "win-audit", "index.html"),
+                encoding="utf-8",
+            ) as project_html:
+                project = project_html.read()
+
+        self.assertNotIn("~/home", home)
+        self.assertIn('<a href="/">~/home</a>', project)
+
     def test_headings_get_anchor_ids(self):
         html = markdown_to_html_node("## Projects\n\n### CAD/CAM").to_html()
 
