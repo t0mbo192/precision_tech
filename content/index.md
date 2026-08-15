@@ -1,14 +1,18 @@
 # Tom's Precision Tech
 
-The portfolio of Tom Lett — precision-minded technical work, now moving toward IT and cybersecurity. Systems, security, and automation, built on 18+ years of hands-on manufacturing and an AI-driven approach to getting tools built.
+The portfolio of Tom Lett — 18+ years of precision manufacturing, now pointed at IT and cybersecurity.
 
 > Comfortable at the command line, on the shop floor, and directing the build.
 
-I'm a technical generalist moving into IT and cybersecurity. Nearly two decades of precision manufacturing taught me to catch problems before they get expensive. These days I use AI to turn that instinct into working tools quickly — scoping the problem, directing the build, then testing and hardening the result until it earns its place.
+Manufacturing taught me to catch problems before they get expensive. I use AI to turn that instinct into working tools quickly: scope the problem, direct the build, then test and harden the result until it earns its place.
 
 ## Background
 
-CNC programmer and machinist by trade, comfortable enough in Python and the shell to review, debug and extend what I build, with university computer science coursework and on-site IT support experience — now pointing all of it at security.
+- **Manufacturing** — CNC programmer and machinist by trade, with Mastercam across mills, lathes and 5-axis
+- **Systems** — Linux and Windows at the command line, with Git and virtual machines as standard tools
+- **Software** — Python and PowerShell, enough to review, debug and extend what I build
+- **Study** — university computer science coursework in operating systems, networking and security fundamentals
+- **Support** — on-site repair of desktops, laptops and POS systems, with Lenovo and Dell hardware certifications
 
 ## Projects
 
