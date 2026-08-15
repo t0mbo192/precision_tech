@@ -201,6 +201,20 @@ def expand_content_tokens(markdown, content_root):
     return PROJECT_LIST_PATTERN.sub(replace_token, markdown)
 
 
+HOME_LINK_HTML = '<a href="/">~/home</a>'
+
+
+def is_site_home(from_path, content_root):
+    """True for the landing page itself, which needs no link back to itself."""
+    if content_root is None:
+        return False
+    return os.path.relpath(from_path, content_root) == "index.md"
+
+
+def home_link_html(from_path, content_root):
+    return "" if is_site_home(from_path, content_root) else HOME_LINK_HTML
+
+
 def generate_page(
     from_path,
     template_path,
@@ -223,8 +237,10 @@ def generate_page(
 
     html_content = markdown_to_html_node(markdown).to_html()
     title = extract_title(markdown)
-    full_html = template.replace("{{ Title }}", title).replace(
-        "{{ Content }}", html_content
+    full_html = (
+        template.replace("{{ Title }}", title)
+        .replace("{{ Content }}", html_content)
+        .replace("{{ HomeLink }}", home_link_html(from_path, content_root))
     )
     full_html = full_html.replace('href="/', f'href="{basepath}')
     full_html = full_html.replace('src="/', f'src="{basepath}')

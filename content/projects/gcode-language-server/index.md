@@ -1,6 +1,6 @@
 ---
 category: tool-building
-summary: Diagnostics, hover docs and completions for CNC G-code, built as a language server.
+summary: Real diagnostics and completions for CNC G-code.
 ---
 
 # G-Code Language Server — The Linter G-Code Never Had

@@ -1,6 +1,6 @@
 ---
 category: tool-building
-summary: Terminal tool that reports which hosts a machine is talking to, in plain language.
+summary: Reports which hosts a machine is talking to.
 ---
 
 # crowsnest — Seeing What a Machine Talks To

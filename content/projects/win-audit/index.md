@@ -1,6 +1,6 @@
 ---
 category: tool-building
-summary: Read-only PowerShell audit of the Windows settings that actually get exploited.
+summary: Read-only audit of Windows hardening settings.
 ---
 
 # win-audit — Read-Only Windows Hardening Audit
