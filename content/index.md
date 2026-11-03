@@ -8,7 +8,7 @@ Manufacturing taught me to catch problems before they get expensive. I use AI to
 
 - **Manufacturing** — CNC programmer and machinist by trade, with Mastercam across mills, lathes and 5-axis
 - **Systems and software** — Linux and Windows at the command line with Git and virtual machines, plus enough Python and PowerShell to review, debug and extend what I build
-- **Certifications** — Google Cybersecurity Certificate (2026), plus Lenovo and Dell hardware certifications
+- **Certifications** — [Google Cybersecurity Certificate](https://www.coursera.org/account/accomplishments/specialization/R6XM5J658CNB) (2026), plus Lenovo and Dell hardware certifications
 - **Study** — university computer science coursework in operating systems, networking and security fundamentals
 - **Support** — on-site repair of desktops, laptops and POS systems
 
